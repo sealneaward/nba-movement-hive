@@ -1,0 +1,7 @@
+*.pem
+*.pyc
+*.egg-info
+*.py~
+**/build/**
+**/dist/**
+*.csv
