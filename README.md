@@ -36,3 +36,7 @@ python movement/json_to_csv.py
 ```
 
 # Amazon Setup
+
+### S3 and EMR Setup
+
+1. Follow [these](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EMRforDynamoDB.html) instructions with some changes, listed below.
