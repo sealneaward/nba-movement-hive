@@ -11,4 +11,5 @@ CREATE TABLE `movement`(
   `event_id` int)
   ROW FORMAT DELIMITED
   FIELDS TERMINATED BY ','
-  LINES TERMINATED BY '\n';
+  LINES TERMINATED BY '\n'
+  tblproperties("skip.header.line.count"="1");

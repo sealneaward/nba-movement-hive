@@ -51,4 +51,17 @@ AWS requires a secure key in order to SSH into the EMR instances. In order to do
 
 2. Create a default EMR cluster on m1.medium instances (cheapest available) with one master and 2 core nodes. Wait until the cluster has a `waiting` status.
 
-3. SSH into the EMR cluster.
+3. SSH into the EMR cluster. The EMR cluster should provide the proper command.
+```
+ssh - i {pem-key} {ec2-login}
+```
+
+4. If you get an error denying access because the key is public, you can edit the permissions with
+```
+chmod 400 {pem-key}
+```
+
+5. Create table in EMR once connected to the cluster. Enter the hive tool and paste the `tables/create_movement_hive.sql` script to create the table. Pase the `tables\load_data_hive.sql` script to load the csv's downloaded to the cluster.
+```
+hive
+```
