@@ -1,5 +1,5 @@
 # nba-movement-hive
-Tutorial on creating cloud infrastructure to store and use SportVU movement data
+Tutorial on creating cloud infrastructure to store and use SportVU movement data. This tutorial was made for linux users.
 
 ### Package Setup
 
@@ -37,6 +37,18 @@ python movement/json_to_csv.py
 
 # Amazon Setup
 
+### PEM Setup
+
+AWS requires a secure key in order to SSH into the EMR instances. In order to do so, instructions are provided to create a pem key on the EC2 console below.
+
+![pem key](img/pem-creation.png)
+
 ### S3 and EMR Setup
 
-1. Follow [these](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EMRforDynamoDB.html) instructions with some changes, listed below.
+1. Create an S3 bucket on AWS and upload the csv documents extracted to the bucket. Make sure each item in the bucket is public.
+
+![item public](s3-public.png)
+
+2. Create a default EMR cluster on m1.medium instances (cheapest available) with one master and 2 core nodes. Wait until the cluster has a `waiting` status.
+
+3. SSH into the EMR cluster.
