@@ -65,7 +65,7 @@ ssh - i {pem-key} {ec2-login}
 chmod 400 {pem-key}
 ```
 
-5. Create table in EMR once connected to the cluster. Enter the hive tool and paste the `tables/create_movement_hive.sql` script to create the table. Pase the `tables\load_data_hive.sql` script to load the csv's downloaded to the cluster.
+5. Create table in EMR once connected to the cluster. Enter the hive tool and paste the `tables/create_movement_hive.sql`, `tables/create_shots_hive.sql` scripts to create the table. Pase the `tables/load_data_hive.sql` script to load the csv's downloaded to the cluster.
 ```
 hive
 ```
@@ -96,3 +96,19 @@ select distinct(game_id) from movement;
 6. Once the connection is opened, you can add the schema and the tables you want to visualize.
 
 ![find schema](img/find-schema.png)
+
+### Tableau Sheet Setup
+
+1. Once the data connection is setup, you can start playing with the shot data. Check off `Analysis > Aggregate Measures`.
+
+2. Import the `img/nba_court.jpg` as a background image. Go to `Map > Background Images` and use the below setting for the half court display.
+
+![background](img/bg-img-setting.png)
+
+3. Use the `Loc X` for the columns and the `Loc Y` field for the rows.
+
+4. Create art.
+
+```
+Note that these operations take a lot of time due to the external queries and how advanced the EC2 instances you chose to use on the EMR cluster are.
+```

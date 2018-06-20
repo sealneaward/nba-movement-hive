@@ -9,13 +9,7 @@ data = ConfigSection("data")
 data.dir = "%s/%s" % (REAL_PATH, "data")
 
 data.movement = ConfigSection("movement data")
-data.movement.dir = "%s/%s" % (data.dir, "csv")
-
-data.movement.converted = ConfigSection("movement data")
-data.movement.converted.dir = "%s/%s" % (data.dir, "converted")
-
-data.events = ConfigSection("event information data")
-data.events.dir = "%s/%s" % (data.dir, "events")
+data.movement.dir = "%s/%s" % (data.dir, "movement")
 
 data.shots = ConfigSection("shot information data")
 data.shots.dir = "%s/%s" % (data.dir, "shots")
