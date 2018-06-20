@@ -1,5 +1,5 @@
 # nba-movement-hive
-Tutorial on creating cloud infrastructure to store and use SportVU movement data. This tutorial was made for linux users.
+Tutorial on creating cloud infrastructure to store and use SportVU movement data. This tutorial was made for linux users. Because this tutorial utilizes tableau for visualizations, it requires windows for those steps.
 
 ### Package Setup
 
@@ -47,9 +47,13 @@ AWS requires a secure key in order to SSH into the EMR instances. In order to do
 
 1. Create an S3 bucket on AWS and upload the csv documents extracted to the bucket. Make sure each item in the bucket is public.
 
-![item public](s3-public.png)
+![item public](img/s3-public.png)
 
 2. Create a default EMR cluster on m1.medium instances (cheapest available) with one master and 2 core nodes. Wait until the cluster has a `waiting` status.
+
+3. Add an inbound rule to the master security group on the cluster for all connections. See the **anywhere** rule at the bottom of the below image.
+
+![inbound rule](img/inbound-rule-anywhere.png)
 
 3. SSH into the EMR cluster. The EMR cluster should provide the proper command.
 ```
@@ -65,3 +69,30 @@ chmod 400 {pem-key}
 ```
 hive
 ```
+
+6. Verify the data stored by querying the different games stored.
+```sql
+select distinct(game_id) from movement;
+```
+
+### Tableau Setup
+
+1. Install Tableau Desktop (not public version).
+
+2. Install the [ODBC drivers](https://s3.amazonaws.com/amazon-odbc-jdbc-drivers/public/AmazonHiveODBC_1.1.1.1001.zip) for HiveServer2.
+
+3. Add Amazon Hive ODBC drivers to the ODBC Data Source Admin tool in Windows.
+
+![odbc admin](img/odbc-admin.png)
+
+4. Add the dns url from the cluster in the configuration for the driver on the ODBC Admin Tool.
+
+![odbc driver](img/odbc-driver.png)
+
+5. Add the EMR connection on tableau. Use the same port and username as before. Enable ssl connection.
+
+![tableau connection](img/tableau-connection.png)
+
+6. Once the connection is opened, you can add the schema and the tables you want to visualize.
+
+![find schema](img/find-schema.png)
